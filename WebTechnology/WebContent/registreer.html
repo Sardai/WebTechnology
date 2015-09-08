@@ -5,19 +5,24 @@
 <title>Registreer hier</title>
 </head>
 <body>
-<table>
-<tr>
-	<td>Gebruikersnaam:</td>
-	<td><input type='text' name="username" /></td>
-</tr>
-<tr>
-	<td>Wachtwoord:</td>
-	<td><input type='password' name="password"/></td>
-</tr>
-<tr>
-	<td><input type='radio' value="huurder" name='type' />Huurder</td>
-	<td><input type='radio' value="verhuurder" name='type'/>Verhuurder</td>
-</tr>
-</table>
+	<form action="RegisterServlet" method="POST">
+		<table>
+			<tr>
+				<td>Gebruikersnaam:</td>
+				<td><input type='text' name="username" /></td>
+			</tr>
+			<tr>
+				<td>Wachtwoord:</td>
+				<td><input type='password' name="password" /></td>
+			</tr>
+			<tr>
+				<td><input type='radio' value="huurder" name='type' />Huurder</td>
+				<td><input type='radio' value="verhuurder" name='type' />Verhuurder</td>
+			</tr>
+			<tr>
+				<td><input type='submit' value="Registreer"/></td>
+			</tr>
+		</table>
+	</form>
 </body>
 </html>

@@ -2,9 +2,32 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Kamer toevoegen</title>
 </head>
 <body>
-
+	<form action="AddRoomServlet" method="post">
+		<table>
+			<tr>
+				<td>Huurprijs</td>
+				<td><input type="number" min="0" step="any" name="huurPrijs" /></td>
+			</tr>
+			<tr>
+				<td>Aantal personen</td>
+				<td><input type="number" min="0" name="aantalPersonen" /></td>
+			</tr>
+			<tr>
+				<td>Aantal vierkante meters</td>
+				<td><input type="number" min="0" name="vierkanteMeters" /></td>
+			</tr>
+			<tr>
+				<td>Plaats:</td>
+				<td><input type="text" name="plaats" /></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Opslaan" /></td>
+				<td></td>
+			</tr>
+		</table>
+	</form>
 </body>
 </html>

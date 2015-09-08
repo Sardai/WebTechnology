@@ -5,15 +5,21 @@
 <title>Login</title>
 </head>
 <body>
-	<Table>
-		<tr>
-			<td>Gebruikersnaam:</td>
-			<td>Wachtwoord:</td>
-		</tr>
-		<tr>
-			<td><input type="text" name="username"/></td>
-			<td><input type="password" name="password"/></td>
-		</tr>
-	</Table>
+	<form action="LoginServlet" method="POST">
+		<Table>
+			<tr>
+				<td>Gebruikersnaam:</td>
+				<td>Wachtwoord:</td>
+			</tr>
+			<tr>
+				<td><input type="text" name="username" /></td>
+				<td><input type="password" name="password" /></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Login" /></td>
+				<td><a href="registreer.html">Registreer</a></td>
+			</tr>
+		</Table>
+	</form>
 </body>
 </html>
