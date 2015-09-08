@@ -53,10 +53,7 @@ public class RegisterServlet extends HttpServlet {
 		
 		ServletContext context = request.getServletContext();
 		KamerVerhuur kamerVerhuur = (KamerVerhuur) context.getAttribute("KamerVerhuur");
-		if(kamerVerhuur == null){
-			kamerVerhuur = new KamerVerhuur();
-			context.setAttribute("KamerVerhuur", kamerVerhuur);
-		}
+		 
 		kamerVerhuur.addUser(user);
 		response.sendRedirect("login.html");
 	}

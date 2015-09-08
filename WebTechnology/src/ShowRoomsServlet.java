@@ -37,11 +37,21 @@ public class ShowRoomsServlet extends HttpServlet {
 		PrintWriter writer = response.getWriter();
 		
 		writer.append("<a href='addRoom.html'>Kamer toevoegen</a>");
-		
+		writer.append("<table>"
+				+ "<tr><th>Nummer</th><th>Aantal personen</th><th>Huur prijs</th><th>Vierkante meters</th><th>Plaats</th></tr>"
+				+ "</table>");
 		for(Kamer kamer : kamerVerhuur.getKamers()){
-			
+			writer.append(String.format(""
+					+ "<tr>"
+					+ "<td>%d</td>"
+					+ "<td>%d</td>"
+					+ "<td>%d</td>"
+					+ "<td>%d</td>"
+					+ "<td>%s</td>",
+					kamer.getKamerNummer(),kamer.getAantalPersonen(),
+					kamer.getHuurprijs(),kamer.getVierkanteMeters(),kamer.getPlaats()));
 		}
-		
+		writer.append("</table>");
 	}
 
 	/**

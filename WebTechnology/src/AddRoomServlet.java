@@ -37,12 +37,13 @@ public class AddRoomServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int kamerNummer = Integer.parseInt(request.getParameter("kamerNummer"));
 		double huurPrijs = Double.parseDouble(request.getParameter("huurPrijs"));
 		int aantalPersonen = Integer.parseInt(request.getParameter("aantalPersonen"));
 		int vierkanteMeters = Integer.parseInt(request.getParameter("vierkanteMeters"));
 		String plaats =  request.getParameter("plaats");
 		
-		Kamer kamer = new Kamer(vierkanteMeters, huurPrijs, plaats, aantalPersonen);
+		Kamer kamer = new Kamer(kamerNummer,vierkanteMeters, huurPrijs, plaats, aantalPersonen);
 		
 		KamerVerhuur kamerVerhuur = (KamerVerhuur) request.getServletContext().getAttribute("KamerVerhuur");
 		kamerVerhuur.addKamer(kamer);

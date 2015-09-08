@@ -49,9 +49,9 @@ public class LoginServlet extends HttpServlet {
 		ServletContext context = request.getServletContext();
 
 		KamerVerhuur kamerVerhuur = (KamerVerhuur) context.getAttribute("KamerVerhuur");
-		User user = null;
+		User user = kamerVerhuur.getUser(username, password);
 		
-		if (kamerVerhuur != null && (user = kamerVerhuur.getUser(username, password)) != null) {
+		if (user != null) {
 			
 			if(user instanceof Huurder){
 				response.sendRedirect("huurder.html");
