@@ -15,12 +15,13 @@ public class Kamer {
 	private String plaats;
 	private int aantalPersonen;
 	/**
+	 * @param kamerNummer
 	 * @param vierkanteMeters
 	 * @param huurprijs
 	 * @param plaats
 	 * @param aantalPersonen
 	 */
-	public Kamer(int kamernummer,int vierkanteMeters, double huurprijs, String plaats, int aantalPersonen) {
+	public Kamer(int kamerNummer,int vierkanteMeters, double huurprijs, String plaats, int aantalPersonen) {
 		super();
 		this.kamerNummer = kamerNummer;
 		this.vierkanteMeters = vierkanteMeters;
