@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import helper.AuthHelper;
 import model.Kamer;
 import model.KamerVerhuur;
 import model.User;
@@ -35,23 +36,16 @@ public class ShowRoomsServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpSession session = request.getSession(false);
-		if(session == null){
-			response.sendRedirect("login.html");
-		}
-		
-		User user = (User) session.getAttribute("User");
-		
-		if(!(user instanceof Verhuurder)){			 
-			response.sendRedirect("login.html");	
+		if(!AuthHelper.isVerhuurderIngelogd(request, response))
+		{
 			return;
 		}
-		
+		 		
 		KamerVerhuur kamerVerhuur = (KamerVerhuur) request.getServletContext().getAttribute("KamerVerhuur");
 		
 		PrintWriter writer = response.getWriter();
 		
-		writer.append("<a href='addRoom.html'>Kamer toevoegen</a>");
+		writer.append("<a href='AddRoom	Servlet'>Kamer toevoegen</a>");
 		writer.append("<table>"
 				+ "<tr><th>Nummer</th><th>Aantal personen</th><th>Huur prijs</th><th>Vierkante meters</th><th>Plaats</th></tr>"
 				); 
@@ -69,7 +63,7 @@ public class ShowRoomsServlet extends HttpServlet {
 		}
 		writer.append("</table>");
 	}
-
+		
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
