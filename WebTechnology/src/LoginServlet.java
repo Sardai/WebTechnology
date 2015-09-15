@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Admin;
 import model.Huurder;
 import model.KamerVerhuur;
 import model.User;
@@ -58,6 +59,8 @@ public class LoginServlet extends HttpServlet {
 				response.sendRedirect("huurder.html");
 			}else if(user instanceof Verhuurder){
 				response.sendRedirect("ShowRoomsServlet");
+			}else if(user instanceof Admin){
+				response.sendRedirect("GetUsersServlet");
 			}
 			
 		} else {

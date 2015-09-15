@@ -1,11 +1,16 @@
 
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import model.Kamer;
+import model.KamerVerhuur;
 
 /**
  * Servlet implementation class SearchRoomServlet
@@ -40,9 +45,29 @@ public class SearchRoomServlet extends HttpServlet {
 		double max_prijs = Double.parseDouble(request.getParameter("max_prijs"));
 		String plaats = request.getParameter("plaats");
 		
-		System.out.println("Aantal vierkante meter: " + oppervlakte + "\n" + "Aantal personen: " + personen
-				+ "\n" + "Maximale prijs: " + max_prijs + "\n" + "Plaats: " + plaats);
+		KamerVerhuur kamerVerhuur = (KamerVerhuur) request.getServletContext().getAttribute("KamerVerhuur");
 		
+		PrintWriter writer = response.getWriter();
+		
+		writer.append("<table>"
+				+ "<tr><th>Nummer</th><th>Aantal personen</th><th>Huur prijs</th><th>Vierkante meters</th><th>Plaats</th></tr>"
+				); 
+		for(Kamer kamer : kamerVerhuur.getKamers()){
+			if (kamer.getVierkanteMeters() >= oppervlakte && kamer.getAantalPersonen() >= personen && kamer.getHuurprijs() <= max_prijs && kamer.getPlaats().equals(plaats)){
+				writer.append(String.format(""
+						+ "<tr>"
+						+ "<td>%d</td>"
+						+ "<td>%d</td>"
+						+ "<td>%.2f</td>"
+						+ "<td>%d</td>"
+						+ "<td>%s</td>"
+						+ "</tr>",
+						kamer.getKamerNummer(),kamer.getAantalPersonen(),
+						kamer.getHuurprijs(),kamer.getVierkanteMeters(),kamer.getPlaats()));
+			}
+		}
+		writer.append("</table>");
+				
 		doGet(request, response);
 	}
 

@@ -35,4 +35,8 @@ public class KamerVerhuur {
 		return kamers;
 	}
 	
+	public List<User> getUsers(){
+		return users;
+	}
+	
 }
