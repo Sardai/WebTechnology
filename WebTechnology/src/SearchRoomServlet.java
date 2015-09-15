@@ -60,10 +60,20 @@ public class SearchRoomServlet extends HttpServlet {
 			return;
 		}
 		
-		int oppervlakte = Integer.parseInt(request.getParameter("oppervlakte"));
-		int personen = Integer.parseInt(request.getParameter("personen"));
-		double max_prijs = Double.parseDouble(request.getParameter("max_prijs"));
+		int oppervlakte = 0;
+		int personen = 0;
+		double max_prijs = 0.0;
 		String plaats = request.getParameter("plaats");
+		try{
+			oppervlakte = Integer.parseInt(request.getParameter("oppervlakte"));
+			personen = Integer.parseInt(request.getParameter("personen"));
+			max_prijs = Double.parseDouble(request.getParameter("max_prijs"));			
+		}
+		catch(NumberFormatException e){
+			getServletContext().getRequestDispatcher("/WEB-INF/wrongDataType.html").forward(request, response);
+			return;
+		}
+
 		
 		
 		PrintWriter writer = response.getWriter();
