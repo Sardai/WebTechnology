@@ -48,7 +48,7 @@ public class AuthHelper {
 		}
 		return true;
 	}
-
+	
 	public static boolean isAdminIngelogd(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			

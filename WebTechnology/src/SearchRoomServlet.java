@@ -49,6 +49,12 @@ public class SearchRoomServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		if(!AuthHelper.isHuurderIngelogd(request, response))
+		{
+			return;
+		}
+		
 		int oppervlakte = Integer.parseInt(request.getParameter("oppervlakte"));
 		int personen = Integer.parseInt(request.getParameter("personen"));
 		double max_prijs = Double.parseDouble(request.getParameter("max_prijs"));

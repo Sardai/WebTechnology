@@ -64,6 +64,7 @@ public class ShowRoomsServlet extends HttpServlet {
 					kamer.getHuurprijs(),kamer.getVierkanteMeters(),kamer.getPlaats()));
 		}
 		writer.append("</table>");
+		writer.append("<a href=\"LogoutServlet\">Logout</a>");
 	}
 		
 	/**
