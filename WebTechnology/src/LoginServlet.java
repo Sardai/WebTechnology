@@ -20,14 +20,21 @@ import model.Verhuurder;
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private KamerVerhuur kamerVerhuur;
+	
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public LoginServlet() {
-		super();
-		// TODO Auto-generated constructor stub
+		super();		
 	}
+	
+	@Override
+	public void init() throws ServletException {		
+		super.init();
+		kamerVerhuur = (KamerVerhuur) getServletContext().getAttribute("KamerVerhuur");
+	}
+
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -46,10 +53,7 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-
-		ServletContext context = request.getServletContext();
-
-		KamerVerhuur kamerVerhuur = (KamerVerhuur) context.getAttribute("KamerVerhuur");
+		
 		User user = kamerVerhuur.getUser(username, password);
 		
 		

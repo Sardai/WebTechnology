@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import helper.AuthHelper;
 import model.Kamer;
 import model.KamerVerhuur;
 
@@ -18,34 +19,40 @@ import model.KamerVerhuur;
 @WebServlet("/SearchRoomServlet")
 public class SearchRoomServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    private KamerVerhuur kamerVerhuur;  
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
     public SearchRoomServlet() {
-        super();
-        // TODO Auto-generated constructor stub
+        super();        
     }
+    
+    @Override
+	public void init() throws ServletException {		
+		super.init();
+		kamerVerhuur = (KamerVerhuur) getServletContext().getAttribute("KamerVerhuur");
+	}
+
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		if(!AuthHelper.isHuurderIngelogd(request, response)){
+			return;
+		}
+		response.sendRedirect("huurder.html");
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		int oppervlakte = Integer.parseInt(request.getParameter("oppervlakte"));
 		int personen = Integer.parseInt(request.getParameter("personen"));
 		double max_prijs = Double.parseDouble(request.getParameter("max_prijs"));
 		String plaats = request.getParameter("plaats");
-		
-		KamerVerhuur kamerVerhuur = (KamerVerhuur) request.getServletContext().getAttribute("KamerVerhuur");
 		
 		PrintWriter writer = response.getWriter();
 		

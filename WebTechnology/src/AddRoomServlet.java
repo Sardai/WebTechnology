@@ -20,7 +20,7 @@ import model.Verhuurder;
 @WebServlet("/AddRoomServlet")
 public class AddRoomServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    private KamerVerhuur kamerVerhuur;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -28,6 +28,13 @@ public class AddRoomServlet extends HttpServlet {
         super();
     }
 
+    @Override
+	public void init() throws ServletException {		
+		super.init();
+		kamerVerhuur = (KamerVerhuur) getServletContext().getAttribute("KamerVerhuur");
+	}
+
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -59,7 +66,6 @@ public class AddRoomServlet extends HttpServlet {
 		
 		Kamer kamer = new Kamer(kamerNummer,vierkanteMeters, huurPrijs, plaats, aantalPersonen);
 		
-		KamerVerhuur kamerVerhuur = (KamerVerhuur) request.getServletContext().getAttribute("KamerVerhuur");
 		kamerVerhuur.addKamer(kamer);
 		
 		response.sendRedirect("ShowRoomsServlet");

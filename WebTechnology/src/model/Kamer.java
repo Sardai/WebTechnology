@@ -39,65 +39,34 @@ public class Kamer {
 		return kamerNummer;
 	}
 
-
-
-	/**
-	 * @param kamerNummer the kamerNummer to set
-	 */
-	public void setKamerNummer(int kamerNummer) {
-		this.kamerNummer = kamerNummer;
-	}
-
-
-
 	/**
 	 * @return the vierkanteMeters
 	 */
 	public int getVierkanteMeters() {
 		return vierkanteMeters;
 	}
-	/**
-	 * @param vierkanteMeters the vierkanteMeters to set
-	 */
-	public void setVierkanteMeters(int vierkanteMeters) {
-		this.vierkanteMeters = vierkanteMeters;
-	}
+	
 	/**
 	 * @return the huurprijs
 	 */
 	public double getHuurprijs() {
 		return huurprijs;
 	}
-	/**
-	 * @param huurprijs the huurprijs to set
-	 */
-	public void setHuurprijs(double huurprijs) {
-		this.huurprijs = huurprijs;
-	}
+	
 	/**
 	 * @return the plaats
 	 */
 	public String getPlaats() {
 		return plaats;
 	}
-	/**
-	 * @param plaats the plaats to set
-	 */
-	public void setPlaats(String plaats) {
-		this.plaats = plaats;
-	}
+	
 	/**
 	 * @return the aantalPersonen
 	 */
 	public int getAantalPersonen() {
 		return aantalPersonen;
 	}
-	/**
-	 * @param aantalPersonen the aantalPersonen to set
-	 */
-	public void setAantalPersonen(int aantalPersonen) {
-		this.aantalPersonen = aantalPersonen;
-	}
+	 
 	
 	
 }

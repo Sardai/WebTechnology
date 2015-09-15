@@ -20,7 +20,7 @@ import model.Verhuurder;
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    private KamerVerhuur kamerVerhuur; 
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -28,6 +28,13 @@ public class RegisterServlet extends HttpServlet {
         super();
     }
 
+    @Override
+	public void init() throws ServletException {		
+		super.init();
+		kamerVerhuur = (KamerVerhuur) getServletContext().getAttribute("KamerVerhuur");
+	}
+
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -48,9 +55,6 @@ public class RegisterServlet extends HttpServlet {
 		}else if(type.equals("verhuurder")){
 			user = new Verhuurder(username, password);
 		}
-		
-		ServletContext context = request.getServletContext();
-		KamerVerhuur kamerVerhuur = (KamerVerhuur) context.getAttribute("KamerVerhuur");
 		 
 		kamerVerhuur.addUser(user);
 		response.sendRedirect("login.html");

@@ -8,13 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import helper.AuthHelper;
 import model.Kamer;
 import model.KamerVerhuur;
-import model.User;
-import model.Verhuurder;
 
 /**
  * Servlet implementation class ShowRoomsServlet
@@ -22,14 +18,22 @@ import model.Verhuurder;
 @WebServlet("/ShowRoomsServlet")
 public class ShowRoomsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    private KamerVerhuur kamerVerhuur;
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
     public ShowRoomsServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
+    
+	@Override
+	public void init() throws ServletException {		
+		super.init();
+		kamerVerhuur = (KamerVerhuur) getServletContext().getAttribute("KamerVerhuur");
+	}
+
+
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -39,9 +43,7 @@ public class ShowRoomsServlet extends HttpServlet {
 		if(!AuthHelper.isVerhuurderIngelogd(request, response))
 		{
 			return;
-		}
-		 		
-		KamerVerhuur kamerVerhuur = (KamerVerhuur) request.getServletContext().getAttribute("KamerVerhuur");
+		}		 			
 		
 		PrintWriter writer = response.getWriter();
 		
@@ -68,7 +70,6 @@ public class ShowRoomsServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
