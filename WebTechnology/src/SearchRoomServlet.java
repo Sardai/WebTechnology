@@ -85,9 +85,7 @@ public class SearchRoomServlet extends HttpServlet {
 						kamer.getHuurprijs(),kamer.getVierkanteMeters(),kamer.getPlaats()));
 			}
 		}
-		writer.append("</table>");
-				
-		doGet(request, response);
+		writer.append("</table>");				
 	}
 
 }

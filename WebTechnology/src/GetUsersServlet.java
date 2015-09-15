@@ -23,15 +23,20 @@ import model.User;
 @WebServlet("/GetUsersServlet")
 public class GetUsersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    private KamerVerhuur kamerVerhuur;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public GetUsersServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
+    @Override
+	public void init() throws ServletException {		
+		super.init();
+		kamerVerhuur = (KamerVerhuur) getServletContext().getAttribute("KamerVerhuur");
+	}
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -40,9 +45,7 @@ public class GetUsersServlet extends HttpServlet {
 		{
 			return;
 		}
-		 		
-		KamerVerhuur kamerVerhuur = (KamerVerhuur) request.getServletContext().getAttribute("KamerVerhuur");
-		
+
 		PrintWriter writer = response.getWriter();
 		
 		int visitCount = 0;
