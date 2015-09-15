@@ -26,7 +26,6 @@ public class AddRoomServlet extends HttpServlet {
      */
     public AddRoomServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -46,6 +45,12 @@ public class AddRoomServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		if(!AuthHelper.isVerhuurderIngelogd(request, response))
+		{
+			return;
+		}
+		
 		int kamerNummer = Integer.parseInt(request.getParameter("kamerNummer"));
 		double huurPrijs = Double.parseDouble(request.getParameter("huurPrijs"));
 		int aantalPersonen = Integer.parseInt(request.getParameter("aantalPersonen"));
