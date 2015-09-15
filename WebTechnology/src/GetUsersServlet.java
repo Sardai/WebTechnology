@@ -72,6 +72,7 @@ public class GetUsersServlet extends HttpServlet {
 					user.getUsername()));
 		}
 		writer.append("</table>");
+		writer.append("<a href=\"LogoutServlet\">Logout</a>");
 		
 		visitCount++;
 		

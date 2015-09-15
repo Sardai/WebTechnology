@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.Admin;
+import model.Huurder;
 import model.User;
 import model.Verhuurder;
 
@@ -23,6 +24,25 @@ public class AuthHelper {
 			User user = (User) session.getAttribute("User");
 
 			if (!(user instanceof Verhuurder)) {
+				response.sendRedirect("login.html");
+				return false;
+			}
+		} catch (IOException e) {
+		}
+		return true;
+	}
+	
+	public static boolean isHuurderIngelogd(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			HttpSession session = request.getSession(false);
+			if (session == null) {
+				response.sendRedirect("login.html");
+				return false;
+			}
+
+			User user = (User) session.getAttribute("User");
+
+			if (!(user instanceof Huurder)) {
 				response.sendRedirect("login.html");
 				return false;
 			}
