@@ -27,7 +27,7 @@ public class AuthHelper {
 		try {
 		
 			User user = getUser(request, response);
-			if (user != null && !(user instanceof Verhuurder)) {
+			if (user != null || !(user instanceof Verhuurder)) {
 				response.sendRedirect("login.html");
 				return false;
 			}
@@ -40,7 +40,7 @@ public class AuthHelper {
 		try {
 		
 			User user = getUser(request, response);
-			if (user != null && !(user instanceof Huurder)) {
+			if (user == null || !(user instanceof Huurder)) {
 				response.sendRedirect("login.html");
 				return false;
 			}
@@ -53,7 +53,7 @@ public class AuthHelper {
 		try {
 			
 			User user = getUser(request, response);
-			if (user != null && !(user instanceof Admin)) {
+			if (user != null || !(user instanceof Admin)) {
 				response.sendRedirect("login.html");
 				return false;
 			}
