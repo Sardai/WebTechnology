@@ -41,19 +41,31 @@ public class RegisterServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		ServletContext context = request.getServletContext();
+		KamerVerhuur kamerVerhuur = (KamerVerhuur) context.getAttribute("KamerVerhuur");
+		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String type = request.getParameter("type");
+		
+		if(kamerVerhuur.userExists(username)){
+			getServletContext().getRequestDispatcher("/WEB-INF/usernameExists.html").forward(request, response);
+			return;
+		}
+		
+		if(username.isEmpty() || password.isEmpty() || type == null){
+			getServletContext().getRequestDispatcher("/WEB-INF/emptyFields.html").forward(request, response);
+			return;
+		}
+		
 		User user = null;
 		if(type.equals("huurder")){
 			user = new Huurder(username, password);
 		}else if(type.equals("verhuurder")){
 			user = new Verhuurder(username, password);
 		}
-		
-		ServletContext context = request.getServletContext();
-		KamerVerhuur kamerVerhuur = (KamerVerhuur) context.getAttribute("KamerVerhuur");
-		 
+				 
 		kamerVerhuur.addUser(user);
 		response.sendRedirect("login.html");
 	}

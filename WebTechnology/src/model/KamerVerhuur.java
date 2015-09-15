@@ -31,6 +31,15 @@ public class KamerVerhuur {
 		return null;
 	}
 	
+	public boolean userExists(String username){
+		for(User u : users){
+			if (u.getUsername().equals(username)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public List<Kamer> getKamers(){
 		return kamers;
 	}
