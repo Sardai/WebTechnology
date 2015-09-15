@@ -13,17 +13,21 @@ import model.Verhuurder;
 
 public class AuthHelper {
 	
+	public static User getUser(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		HttpSession session = request.getSession(false);
+		if (session == null) {
+			response.sendRedirect("login.html");
+			return null;
+		}
+
+		return (User) session.getAttribute("User");
+	}
+	
 	public static boolean isVerhuurderIngelogd(HttpServletRequest request, HttpServletResponse response) {
 		try {
-			HttpSession session = request.getSession(false);
-			if (session == null) {
-				response.sendRedirect("login.html");
-				return false;
-			}
-
-			User user = (User) session.getAttribute("User");
-
-			if (!(user instanceof Verhuurder)) {
+		
+			User user = getUser(request, response);
+			if (user != null && !(user instanceof Verhuurder)) {
 				response.sendRedirect("login.html");
 				return false;
 			}
@@ -34,15 +38,9 @@ public class AuthHelper {
 	
 	public static boolean isHuurderIngelogd(HttpServletRequest request, HttpServletResponse response) {
 		try {
-			HttpSession session = request.getSession(false);
-			if (session == null) {
-				response.sendRedirect("login.html");
-				return false;
-			}
-
-			User user = (User) session.getAttribute("User");
-
-			if (!(user instanceof Huurder)) {
+		
+			User user = getUser(request, response);
+			if (user != null && !(user instanceof Huurder)) {
 				response.sendRedirect("login.html");
 				return false;
 			}
@@ -50,18 +48,12 @@ public class AuthHelper {
 		}
 		return true;
 	}
-
+	
 	public static boolean isAdminIngelogd(HttpServletRequest request, HttpServletResponse response) {
 		try {
-			HttpSession session = request.getSession(false);
-			if (session == null) {
-				response.sendRedirect("login.html");
-				return false;
-			}
-
-			User user = (User) session.getAttribute("User");
-
-			if (!(user instanceof Admin)) {
+			
+			User user = getUser(request, response);
+			if (user != null && !(user instanceof Admin)) {
 				response.sendRedirect("login.html");
 				return false;
 			}
@@ -69,5 +61,7 @@ public class AuthHelper {
 		}
 		return true;
 	}
+	
+	
 	
 }
